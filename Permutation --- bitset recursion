@@ -1,0 +1,24 @@
+vector<string> permutation(string s)
+{
+    vector<string> vec;
+    vector<bool> used;
+    string cur="";
+    helper(cur, s, used, vec);
+    return vec;
+}
+
+void helper(string& cur, string s, vector<bool>& used, vector<string>& vec)
+{
+    if(cur.size() == s.size() )
+        vec.push_back(cur);
+
+    for(int i=0; i<s.size(); ++i)
+    {
+        if(used[i]) continue;
+        cur+=s[i];
+        used[i]=true;
+        helper(cur, s, used, vec);
+        used[i]=false;
+        cur.pop_back();
+    }
+}
